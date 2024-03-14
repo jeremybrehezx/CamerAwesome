@@ -7,6 +7,7 @@ import 'package:camerawesome/pigeon.dart';
 import 'package:exif/exif.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:patrol/patrol.dart';
 
 import 'common.dart';
 
@@ -121,7 +122,7 @@ void main() {
       expect($(AwesomeCaptureButton), findsOneWidget);
       expect($(AwesomeCameraModeSelector).$(PageView), findsOneWidget);
 
-      await $(AwesomeCaptureButton).tap(andSettle: false);
+      await $(AwesomeCaptureButton).tap(settlePolicy: SettlePolicy.noSettle);
       await allowPermissionsIfNeeded($);
       await $.pump(const Duration(milliseconds: 2000));
 
@@ -136,7 +137,7 @@ void main() {
       expect($(AwesomeCaptureButton), findsOneWidget);
       expect($(AwesomeCameraModeSelector).$(PageView), findsNothing);
 
-      await $(AwesomeCaptureButton).tap(andSettle: false);
+      await $(AwesomeCaptureButton).tap(settlePolicy: SettlePolicy.noSettle);
       await $.pump(const Duration(milliseconds: 4000));
 
       // Not recording
@@ -289,7 +290,7 @@ void main() {
 
       await allowPermissionsIfNeeded($);
 
-      await $(AwesomeCaptureButton).tap(andSettle: false);
+      await $(AwesomeCaptureButton).tap(settlePolicy: SettlePolicy.noSettle);
       // TODO Wait for media captured instead of a fixed duration (taking picture + retrieving locaiton might take a lot of time)
       await $.pump(const Duration(seconds: 4));
       final request = await tempPath('single_photo_back_gps.jpg')(sensors);
@@ -321,7 +322,7 @@ void main() {
       await allowPermissionsIfNeeded($);
 
       expect($(AwesomeFocusIndicator), findsNothing);
-      await $(AwesomeCameraGestureDetector).tap(andSettle: false);
+      await $(AwesomeCameraGestureDetector).tap(settlePolicy: SettlePolicy.noSettle);
       expect($(AwesomeFocusIndicator), findsOneWidget);
       // [OnPreviewTap.tapPainterDuration] should last 2 seconds by default
       await $.pump(const Duration(seconds: 2));
@@ -345,11 +346,11 @@ void main() {
       await allowPermissionsIfNeeded($);
 
       expect($(AwesomeFocusIndicator), findsNothing);
-      await $(AwesomeCameraGestureDetector).tap(andSettle: false);
+      await $(AwesomeCameraGestureDetector).tap(settlePolicy: SettlePolicy.noSettle);
       expect($(AwesomeFocusIndicator), findsOneWidget);
       await $.pump(const Duration(seconds: 1));
       // Focus again after one sec, meaning the focus indicator should last 3 seconds total
-      await $(AwesomeCameraGestureDetector).tap(andSettle: false);
+      await $(AwesomeCameraGestureDetector).tap(settlePolicy: SettlePolicy.noSettle);
       await $.pump(const Duration(seconds: 1));
       expect($(AwesomeFocusIndicator), findsOneWidget);
       await $.pump(const Duration(seconds: 1));

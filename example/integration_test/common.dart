@@ -8,18 +8,17 @@ import 'package:patrol/patrol.dart';
 @isTest
 void patrol(
   String description,
-  Future<void> Function(PatrolTester) callback, {
+  Future<void> Function(PatrolIntegrationTester) callback, {
   bool? skip,
 }) {
   patrolTest(
     description,
-    nativeAutomation: true,
     skip: skip,
     callback,
   );
 }
 
-Future<void> allowPermissionsIfNeeded(PatrolTester $) async {
+Future<void> allowPermissionsIfNeeded(PatrolIntegrationTester $) async {
   if (await $.native.isPermissionDialogVisible()) {
     await $.native.grantPermissionWhenInUse();
   }

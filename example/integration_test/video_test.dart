@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:camera_app/drivable_camera.dart';
 import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:patrol/patrol.dart';
 
 import 'common.dart';
 
@@ -27,7 +28,7 @@ void main() {
         final request =
             await tempPath('record_video_single_${sensor.name}.mp4')(sensors);
         final filePath = request.when(single: (single) => single.file!.path);
-        await $(AwesomeCaptureButton).tap(andSettle: false);
+        await $(AwesomeCaptureButton).tap(settlePolicy: SettlePolicy.noSettle);
         await allowPermissionsIfNeeded($);
         await $.pump(const Duration(seconds: 3));
         await $(AwesomeCaptureButton).tap();
@@ -60,7 +61,7 @@ void main() {
           final request = await tempPath(
               'multiple_video_${sensor.name}_$idxVideo.mp4')(sensors);
           final filePath = request.when(single: (single) => single.file!.path);
-          await $(AwesomeCaptureButton).tap(andSettle: false);
+          await $(AwesomeCaptureButton).tap(settlePolicy: SettlePolicy.noSettle);
           await allowPermissionsIfNeeded($);
           await Future.delayed(const Duration(seconds: 3));
           await $(AwesomeCaptureButton).tap();
@@ -90,7 +91,7 @@ void main() {
             await tempPath('pause_resume_video_$sensor.mp4')(sensors);
         final filePath = request.when(single: (single) => single.file!.path);
 
-        await $(AwesomeCaptureButton).tap(andSettle: false);
+        await $(AwesomeCaptureButton).tap(settlePolicy: SettlePolicy.noSettle);
         await allowPermissionsIfNeeded($);
         await Future.delayed(const Duration(seconds: 2));
         await $.tester.pumpAndSettle();
@@ -153,10 +154,10 @@ void main() {
           await $.tester.tap(switchButton, warnIfMissed: false);
           await $.pump(const Duration(milliseconds: 2000));
         }
-        await $(AwesomeCaptureButton).tap(andSettle: false);
+        await $(AwesomeCaptureButton).tap(settlePolicy: SettlePolicy.noSettle);
         await allowPermissionsIfNeeded($);
         await Future.delayed(const Duration(seconds: 3));
-        await $(AwesomeCaptureButton).tap(andSettle: false);
+        await $(AwesomeCaptureButton).tap(settlePolicy: SettlePolicy.noSettle);
         await $.pump(const Duration(milliseconds: 2000));
 
         expect(File(filePath).existsSync(), true);
