@@ -164,7 +164,8 @@ class CameraAwesomeBuilder extends StatefulWidget {
   /// [imageAnaysisConfig] and listen to the stream of images with
   /// [onImageForAnalysis].
   CameraAwesomeBuilder.awesome(
-      {SensorConfig? sensorConfig,
+      {
+      SensorConfig? sensorConfig,
       bool enablePhysicalButton = false,
       Widget? progressIndicator,
       required SaveConfig saveConfig,
