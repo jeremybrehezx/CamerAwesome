@@ -74,7 +74,7 @@ class SensorConfig {
     flashMode$ = _flashModeController.stream;
 
     _sensorTypeController = BehaviorSubject<SensorType>.seeded(
-        sensors.first.type ?? SensorType.ultraWideAngle);
+        sensors.first.type ?? SensorType.wideAngle);
     sensorType$ = _sensorTypeController.stream;
 
     _zoomController = BehaviorSubject<double>.seeded(currentZoom);

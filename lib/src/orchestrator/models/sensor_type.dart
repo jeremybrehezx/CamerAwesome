@@ -17,7 +17,7 @@ enum SensorType {
 
   unknown;
 
-  SensorType get defaultSensorType => SensorType.ultraWideAngle;
+  SensorType get defaultSensorType => SensorType.wideAngle;
 }
 
 class SensorTypeDevice {
