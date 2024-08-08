@@ -1,6 +1,6 @@
 import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide CarouselController;
 import 'package:flutter/services.dart';
 
 class AwesomeFilterSelector extends StatefulWidget {
@@ -124,10 +124,9 @@ class _FilterPreview extends StatelessWidget {
   final int? textureId;
 
   const _FilterPreview({
-    Key? key,
     required this.filter,
     required this.textureId,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
